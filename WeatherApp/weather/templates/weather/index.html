@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div>
+      <a href="https://github.com/Bodyk1Love/django_trainings" target="_blank" class="navbar-brand d-flex align-items-center">
+        <strong>Weather</strong>
+      </a>
+    </div>
+  </div>
+</header>
+<div class="conteiner">
+    <div class="row">
+        <div class="col-5 offset-1">
+            <h1>Weather in your city</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="city">City</label>
+                {{ form.name }}
+                <input type="submit" name="send" value="Search" class="mt-2 btn btn-danger">
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-5 offset-1">
+            <h1>Info</h1>
+
+            {% for i in info %}
+            <div class="alert alert-info">
+                <div class="row">
+                    <div class="col-9">
+                        <b>City: </b> {{ i.city }} <br>
+                        <b>Temperature: </b> {{ i.temp }} <sup>o</sup> <br>
+                    </div>
+                     <div class="col-2 offset-1">
+                        <img src="http://openweathermap.org/img/w/{{ i.icon }}.png" alt="img" class="img-thumbnail">
+                     </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
